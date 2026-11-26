@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Backtest Pro · practice trading on historical candles</title>
+<meta name="description" content="Replay the market candle by candle and practise long and short trades with drawing tools, risk calculator and performance analytics.">
+<script src="/js/core/theme-init.js"></script>
+<link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+<header class="nav"><div class="wrap navin">
+  <a class="brand" href="/">Backtest<i>Pro</i></a><span class="grow"></span>
+  <a class="l" href="#features">Features</a><a class="l" href="#how">How it works</a><a class="l" href="#security">Security</a>
+  <button id="theme" class="icon" aria-label="Toggle theme"></button>
+  <a class="btn" href="/auth.html" data-guest>Sign in</a><a class="btn primary" href="/terminal.html" id="openApp">Open terminal</a>
+</div></header>
+
+<main>
+<section class="hero wrap">
+  <div class="copy">
+    <span class="pill reveal">Simulated trading · no risk</span>
+    <h1 class="reveal" style="--d:.06s">Trade the past,<br>one candle <span class="hl">at a time.</span></h1>
+    <p class="reveal" style="--d:.12s">Pick any date, press play and go long or short as the chart unfolds. You only see what the market had printed so far, so every lesson is honest.</p>
+    <div class="cta reveal" style="--d:.18s"><a class="btn primary big" href="/auth.html#register" data-guest>Create free account</a><a class="btn big" href="/terminal.html">Open the terminal</a></div>
+    <div class="meta reveal" style="--d:.24s"><span>BTCUSD</span><span>XAUUSD</span><span>1m to 1W</span><span>Replay up to 5x</span></div>
+  </div>
+  <div class="stage reveal" style="--d:.15s">
+    <div class="card"><div class="bar"><i></i><i></i><i></i><span class="num">XAUUSD · 1h</span><span class="grow"></span><span class="pnl num" id="pnl">+$0.00</span></div>
+      <div id="shot"></div>
+      <div class="foot muted">Illustration</div></div>
+    <div class="chip c1 num"><b class="pos">BUY</b> 0.50 lot</div><div class="chip c2 num">R:R 2.0</div>
+  </div>
+</section>
+
+<section class="sec wrap" id="features">
+  <h2 class="reveal">Everything a serious practice session needs</h2>
+  <div class="grid">
+    <article class="feat reveal"><div class="ic">▶</div><h3>Replay without peeking</h3><p>Candles arrive one by one at 1x to 5x. Switch timeframe mid-session and you get a half-formed candle, like the real thing.</p></article>
+    <article class="feat reveal" style="--d:.06s"><div class="ic">⇅</div><h3>Orders sized your way</h3><p>Lots like MT5, % of balance or margin in dollars, with real leverage, spread and stop-out.</p></article>
+    <article class="feat reveal" style="--d:.12s"><div class="ic">▭</div><h3>Draggable stop and target</h3><p>A long/short box on the chart shows profit and loss at every level. Drag the lines to adjust.</p></article>
+    <article class="feat reveal"><div class="ic">✎</div><h3>Drawing tools</h3><p>Trend lines, channels, fibs, shapes, measure and more, with favourites you can pin and drag.</p></article>
+    <article class="feat reveal" style="--d:.06s"><div class="ic">◎</div><h3>Profiles per strategy</h3><p>Each idea gets its own balance, leverage and trade log, so you can compare fairly.</p></article>
+    <article class="feat reveal" style="--d:.12s"><div class="ic">⤓</div><h3>Analytics you can download</h3><p>Win rate, profit factor, drawdown, a P&amp;L calendar, and CSV or JSON exports of every trade.</p></article>
+  </div>
+</section>
+
+<section class="sec wrap" id="how">
+  <h2 class="reveal">How a session goes</h2>
+  <ol class="steps">
+    <li class="reveal"><b>Make a profile</b>Choose a balance and leverage.</li>
+    <li class="reveal" style="--d:.08s"><b>Pick a start date</b>Any day in your data.</li>
+    <li class="reveal" style="--d:.16s"><b>Play, pause, trade</b>Mark levels, place the order, adjust stop and target.</li>
+    <li class="reveal" style="--d:.24s"><b>Review the numbers</b>See what really worked, then export it.</li>
+  </ol>
+</section>
+
+<section class="sec wrap" id="security">
+  <div class="sgrid">
+    <div class="reveal"><h2>Your data stays yours</h2><p class="muted">Built so a practice tool never becomes a liability.</p></div>
+    <ul class="sl">
+      <li class="reveal"><b>Hashed passwords</b>bcrypt with a strong cost. Plain passwords are never stored.</li>
+      <li class="reveal" style="--d:.05s"><b>Encrypted at rest</b>The database file is AES-256 encrypted on disk.</li>
+      <li class="reveal" style="--d:.1s"><b>Safe sessions</b>httpOnly, same-site cookies that scripts cannot read, revocable on every device.</li>
+      <li class="reveal" style="--d:.15s"><b>Attack protection</b>Strict content policy, rate limits, login lockout and request checks.</li>
+      <li class="reveal" style="--d:.2s"><b>You are in control</b>Download everything we hold, or delete your account, whenever you like.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band wrap reveal"><h2>Ready to practise?</h2><a class="btn primary big" href="/auth.html#register" data-guest>Create free account</a></section>
+</main>
+<footer class="wrap foot2"><span>Simulated trading for practice. Nothing here is financial advice.</span><span>Charts by <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></span></footer>
+<script type="module" src="/js/pages/landing.js"></script>
+</body>
+</html>

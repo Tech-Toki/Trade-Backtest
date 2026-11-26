@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign in · Backtest Pro</title>
+<script src="/js/core/theme-init.js"></script>
+<link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+<div class="auth">
+  <aside class="showcase">
+    <a class="brand" href="/">Backtest<i>Pro</i></a>
+    <svg class="wave" viewBox="0 0 600 260" preserveAspectRatio="none" aria-hidden="true">
+      <polyline class="l1" points="0,200 60,170 110,185 170,120 230,140 290,80 350,110 410,60 470,90 530,40 600,55"/>
+      <polyline class="l2" points="0,220 70,205 130,215 190,170 250,185 310,140 370,160 430,120 490,135 550,100 600,110"/>
+    </svg>
+    <div class="pitch"><h2>Make your mistakes on old candles.</h2><p>Replay the market, place trades, and learn what works, with nothing at stake.</p></div>
+    <ul class="safe"><li>Passwords are hashed, never stored as text</li><li>Your data is encrypted on disk</li><li>Export or delete everything, any time</li></ul>
+  </aside>
+  <main>
+    <form id="form" novalidate autocomplete="on">
+      <div class="top"><h1 id="title"></h1><button type="button" id="theme" class="icon" aria-label="Toggle theme"></button></div>
+      <p class="muted" id="sub"></p>
+      <div class="field" id="nameBox" hidden><label for="name">Name</label><input id="name" autocomplete="name" maxlength="60"></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" maxlength="320"></div>
+      <div class="field"><label for="password">Password</label>
+        <div class="pw"><input id="password" type="password" maxlength="128"><button type="button" id="pwToggle" class="ghost">Show</button></div>
+        <div class="meter" id="meter" hidden><span></span><span></span><span></span><span></span><em id="pwHint"></em></div>
+      </div>
+      <div id="msg" role="alert"></div>
+      <button class="primary" id="submit"><span id="submitText"></span></button>
+      <div class="switch" id="switch"></div>
+    </form>
+  </main>
+</div>
+<script type="module" src="/js/pages/auth.js"></script>
+</body>
+</html>

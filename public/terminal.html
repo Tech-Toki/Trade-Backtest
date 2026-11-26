@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terminal · Backtest Pro</title>
+<script src="/js/core/theme-init.js"></script>
+<link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/terminal.css">
+<script src="/vendor/lightweight-charts.js"></script>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <a class="brand" href="/">Backtest<i>Pro</i></a>
+    <select id="symbol"><option>BTCUSD</option><option>XAUUSD</option></select>
+    <div class="seg" id="tfs"><button data-tf="1m">1m</button><button data-tf="5m">5m</button><button data-tf="15m">15m</button><button data-tf="1h" class="on">1h</button><button data-tf="1D">1D</button><button data-tf="1W">1W</button></div>
+    <div class="dd"><button id="indBtn">Indicators ▾</button><div class="menu" id="indMenu" hidden></div></div>
+    <span class="grow"></span>
+    <select id="profile" title="Practice profile"></select>
+    <button id="editProfile">Edit</button><button id="newProfile">+ Profile</button>
+    <button id="chartBtn" title="Chart settings (or right-click the chart)">Chart ⚙</button>
+    <button id="theme" class="icon"></button>
+    <div class="acct">
+      <button class="avatar" id="avatar" aria-label="Account"></button>
+      <div class="acct-menu"><div class="acct-card">
+        <div class="acct-head"><b id="acName"></b><span class="muted" id="acEmail"></span></div>
+        <button id="acManage">Manage account</button>
+        <a href="/performance.html">Performance</a>
+        <button id="acLogout">Logout</button>
+      </div></div>
+    </div>
+  </header>
+  <div class="term">
+    <div class="dtools" id="dtools"></div>
+    <section class="chart-col">
+      <div id="legend"><div id="lgName" class="lg-name"></div><div id="lgOhlc" class="num"></div>
+        <div class="lg-trade"><button class="sell" id="lgSell" title="Sell at bid"></button><span class="num" id="lgSpread" title="Spread"></span><button class="buy" id="lgBuy" title="Buy at ask"></button></div></div>
+      <div id="favBar" hidden></div>
+      <div id="chart"></div>
+      <div class="dock" id="dock">
+        <div class="dock-head" title="Click to collapse"><b>Open positions</b><span class="muted" id="posCount"></span><span class="grow"></span><button id="closeAll">Close all</button></div>
+        <div class="dock-body" id="positions"></div>
+      </div>
+      <div class="replay">
+        <button id="play">▶ Play</button><button id="step" title="Next candle">Step ▸</button>
+        <div class="seg" id="speeds"><button data-speed="1" class="on">1x</button><button data-speed="2">2x</button><button data-speed="4">4x</button><button data-speed="5">5x</button></div>
+        <span class="badge" id="badge"></span>
+        <a class="attr" href="https://www.tradingview.com/" target="_blank" rel="noopener">Charts by TradingView</a>
+        <span class="grow"></span>
+        <span class="muted num" id="clock"></span>
+        <span class="dsel" title="Replay start date"><select id="sD"></select><select id="sM"></select><select id="sY"></select></span>
+      </div>
+    </section>
+    <aside class="side">
+      <div class="box">
+        <h3>Account</h3>
+        <div class="row"><span class="muted">Balance</span><b class="num" id="bal"></b></div>
+        <div class="row"><span class="muted">Equity</span><b class="num" id="eq"></b></div>
+        <div class="row"><span class="muted">Open P&amp;L</span><b class="num" id="unr"></b></div>
+        <div class="row"><span class="muted">Margin used</span><span class="num" id="mar"></span></div>
+        <div class="row"><span class="muted">Free margin</span><span class="num" id="free"></span></div>
+        <div class="row"><span class="muted">Leverage</span><span class="num" id="lev"></span></div>
+        <div class="row"><span class="muted">Margin level</span><span class="num" id="mlvl"></span></div>
+        <div class="row"><span class="muted">Trades · win rate</span><span class="num" id="stats"></span></div>
+      </div>
+      <div class="box">
+        <h3>Order <button id="riskBtn" title="Position size from risk">Risk calc</button></h3>
+        <div class="seg modes" id="modes"><button data-mode="lot" class="on">Lots</button><button data-mode="pct">% Balance</button><button data-mode="money">Margin $</button></div>
+        <input id="size" type="number" value="0.1" min="0" step="0.01">
+        <div class="hint num" id="hint"></div>
+        <div class="g2"><div><label for="sl">Stop loss</label><input id="sl" type="number" step="any" placeholder="auto"></div><div><label for="tp">Take profit</label><input id="tp" type="number" step="any" placeholder="auto"></div></div>
+        <div class="go"><button class="sell" id="short">Sell <span class="num" id="sellPx"></span></button><button class="buy" id="long">Buy <span class="num" id="buyPx"></span></button></div>
+      </div>
+      <div class="box"><h3>History <span><button id="exportTrades" title="Download this profile’s trades as CSV">Export CSV</button><button id="reset">Reset</button></span></h3><div class="list" id="history"></div></div>
+    </aside>
+  </div>
+</div>
+<dialog id="riskDlg">
+  <h2>Risk calculator</h2>
+  <label for="rBal">Balance ($)</label><input id="rBal" type="number">
+  <label for="rPct">Risk per trade (% of balance)</label><input id="rPct" type="number" step="any">
+  <div class="g2"><div><label for="rEntry">Entry</label><input id="rEntry" type="number"></div><div><label for="rStop">Stop loss</label><input id="rStop" type="number"></div></div>
+  <label for="rTp">Take profit (optional)</label><input id="rTp" type="number">
+  <div class="rbox" id="rOut"></div>
+  <div class="dlg-actions"><button class="primary" id="rUse">Use this size</button><button id="rClose">Close</button></div>
+</dialog>
+<dialog id="chartDlg">
+  <h2>Chart settings</h2>
+  <div class="crow"><span>Background</span><input type="color" id="cBg"></div>
+  <div class="crow"><span>Text</span><input type="color" id="cText"></div>
+  <div class="crow"><span>Grid lines</span><input type="color" id="cGrid"></div>
+  <div class="crow"><span>Bullish candle</span><input type="color" id="cUp"></div>
+  <div class="crow"><span>Bearish candle</span><input type="color" id="cDown"></div>
+  <div class="crow"><span>Vertical grid</span><input type="checkbox" id="cVert"></div>
+  <div class="crow"><span>Horizontal grid</span><input type="checkbox" id="cHorz"></div>
+  <div class="crow"><span>Volume</span><input type="checkbox" id="cVol"></div>
+  <div class="crow"><span>Candle borders</span><input type="checkbox" id="cBorder"></div>
+  <div class="crow"><span>Magnet crosshair</span><input type="checkbox" id="cMagnet"></div>
+  <div class="dlg-actions"><button id="cReset">Reset to theme</button><span class="grow"></span><button class="primary" id="cClose">Done</button></div>
+</dialog>
+<dialog id="acctDlg" class="wide">
+  <h2>Manage account</h2>
+  <label for="aName">Name</label><input id="aName" maxlength="60">
+  <label for="aEmail">Email</label><input id="aEmail" disabled>
+  <div class="dlg-actions"><button id="aSaveName">Save name</button></div>
+  <div class="sec"><h4>Change password</h4>
+    <label for="aCur">Current password</label><input id="aCur" type="password" autocomplete="current-password">
+    <label for="aNew">New password (8+)</label><input id="aNew" type="password" autocomplete="new-password">
+    <div class="dlg-actions"><button id="aSavePw">Change password</button></div></div>
+  <div class="sec"><h4>Your data</h4>
+    <div class="dlg-actions"><button id="aExport">Download my data</button><button id="aLogoutAll">Sign out everywhere</button></div></div>
+  <div class="sec"><h4>Delete account</h4>
+    <label for="aDelPw">Confirm with your password</label><input id="aDelPw" type="password">
+    <div class="dlg-actions"><button id="aDelete" class="neg">Delete account</button></div></div>
+  <div id="aMsg" style="font-size:12.5px;margin-top:12px;min-height:16px"></div>
+  <div class="dlg-actions"><span class="grow"></span><button id="aClose">Close</button></div>
+</dialog>
+<dialog id="profileDlg">
+  <h2>Profile</h2>
+  <label for="pName">Name</label><input id="pName" maxlength="40" placeholder="e.g. Breakout strategy">
+  <label for="pBalance">Starting balance ($)</label><input id="pBalance" type="number" min="100">
+  <label for="pLev">Leverage (1:x)</label><input id="pLev" type="number" min="1" max="1000">
+  <div id="pErr" class="neg" style="font-size:12px;margin-top:8px"></div>
+  <div class="dlg-actions"><button class="primary" id="pSave">Save</button><button id="pCancel">Cancel</button><span class="grow"></span><button id="pDelete" class="neg">Delete</button></div>
+</dialog>
+<script type="module" src="/js/pages/terminal.js"></script>
+</body>
+</html>

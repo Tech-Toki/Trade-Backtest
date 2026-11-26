@@ -1,0 +1,45 @@
+{
+  "name": "backtest-pro",
+  "version": "3.0.0",
+  "description": "Trading replay and backtesting platform: candle-by-candle replay, drawing tools, risk management and performance analytics.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "fetch:data": "node scripts/fetch-data.js",
+    "check:publish": "node scripts/check-publish.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "dukascopy-node": "latest",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.4.0"
+  },
+  "private": true,
+  "author": "Tech-Toki",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tech-Toki/backtest-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tech-Toki/backtest-pro/issues"
+  },
+  "homepage": "https://github.com/Tech-Toki/backtest-pro#readme",
+  "keywords": [
+    "backtesting",
+    "trading",
+    "replay",
+    "candlestick",
+    "charts",
+    "express",
+    "javascript",
+    "portfolio"
+  ]
+}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Performance · Backtest Pro</title>
+<script src="/js/core/theme-init.js"></script>
+<link rel="stylesheet" href="/css/base.css"><link rel="stylesheet" href="/css/performance.css">
+<script src="/vendor/lightweight-charts.js"></script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">Backtest<i>Pro</i></a><a class="back" href="/terminal.html">← Terminal</a>
+  <span class="grow"></span>
+  <select id="fProfile" title="Profile"></select>
+  <select id="fSymbol"><option value="">All symbols</option><option>BTCUSD</option><option>XAUUSD</option></select>
+  <select id="fSide"><option value="">Long &amp; short</option><option value="long">Long only</option><option value="short">Short only</option></select>
+  <div class="dd"><button id="dlBtn" class="primary">Download ▾</button>
+    <div class="menu right" id="dlMenu" hidden>
+      <button data-dl="trades-csv">Trades · CSV</button><button data-dl="trades-json">Trades · JSON</button>
+      <button data-dl="summary-csv">Performance summary · CSV</button><button data-dl="daily-csv">Daily P&amp;L · CSV</button><button data-dl="report-json">Full report · JSON</button>
+    </div></div>
+  <button id="theme" class="icon" aria-label="Toggle theme"></button><button id="logout">Logout</button>
+</header>
+<main>
+  <div class="head reveal"><h1>Performance</h1><p class="muted">Results of your closed trades. Use the filters above to slice them, and Download to keep a copy.</p></div>
+  <div class="kpis" id="kpis"></div>
+  <div class="split">
+    <div class="panel reveal"><h2>Equity</h2><div id="eq"></div><div class="empty" id="eqEmpty" hidden>No closed trades yet. Take a few in the terminal.</div></div>
+    <div class="panel mini reveal" id="breakdown" style="--d:.08s"></div>
+  </div>
+  <div class="panel reveal">
+    <div class="calbar">
+      <h2 id="calTitle"></h2>
+      <span class="dsel"><select id="cD" hidden></select><select id="cM"></select><select id="cY"></select></span>
+      <button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button><button id="latest" title="Jump to your latest trade">Latest</button>
+      <span class="grow"></span>
+      <div class="seg" id="views"><button data-view="year">Year</button><button data-view="month" class="on">Month</button><button data-view="week">Week</button><button data-view="day">Day</button></div>
+    </div>
+    <div class="totals" id="totals"></div>
+    <div id="cal"></div>
+    <p class="muted note">Days are market dates from the replay (UTC), not the day you placed the trade.</p>
+  </div>
+  <div class="panel reveal"><h2>All trades</h2><div id="trades"></div></div>
+  <p class="muted note">Charts by <a href="https://www.tradingview.com/" target="_blank" rel="noopener">TradingView</a></p>
+</main>
+<script type="module" src="/js/pages/performance.js"></script>
+</body>
+</html>

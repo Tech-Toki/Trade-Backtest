@@ -1,0 +1,40 @@
+# ── Secrets & private data (never commit) ──────────────────────────
+.env
+.env.*
+!.env.example
+data/db.json
+data/db.json.tmp
+data/.jwt-secret
+data/.data-key
+data/*.bak
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+
+# ── Market data (licensed by its providers, and large) ─────────────
+data/market/*
+!data/market/.gitkeep
+
+# ── Dependencies & build output ────────────────────────────────────
+node_modules/
+dist/
+build/
+coverage/
+*.tgz
+
+# ── Logs & caches ──────────────────────────────────────────────────
+*.log
+npm-debug.log*
+.npm/
+.cache/
+
+# ── OS & editor files (can contain usernames / paths) ──────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.code-workspace
